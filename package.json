@@ -3,11 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-links": "^5.1.9",
+    "@storybook/addons": "^5.1.9",
+    "@storybook/react": "^5.1.9",
+    "babel-loader": "^8.0.6",
     "cross-env": "^5.1.4",
     "react-scripts": "^2.1.5"
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "deep-diff": "^1.0.2",
     "draughtsboard": "^0.1.1",
     "history": "^4.6.3",
     "immutable": "^4.0.0-rc.12",
@@ -17,6 +24,10 @@
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.3.0",
+    "lodash.isequal": "4.5.0",
+    "react-dnd": "2.6.0",
+    "react-dnd-html5-backend": "4.0.5",
+    "react-dnd-multi-backend": "3.1.2",
     "react-dom": "^16.3.0",
     "react-modal": "^3.8.1",
     "react-redux": "^5.0.7",
@@ -35,7 +46,9 @@
     "start": "cross-env PORT=4100 react-scripts start",
     "build": "react-scripts build",
     "test": "cross-env PORT=4100 react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "browserslist": [
     ">0.2%",
