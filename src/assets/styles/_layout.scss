@@ -87,7 +87,7 @@ input:required {
 		}
 	}
 	& .btn {
-		width: 15%;
+		width: 100%;
 		height: 50px;
 		display: block;
 		font-size: 1.125rem;
@@ -161,6 +161,12 @@ footer {
 			color: darken($grey, 40%);
 		}
 	}
+
+	div {
+		padding: 0 10px;
+		max-width: 800px;
+		margin: 0 auto;
+	}
 }
 
 #footer {
@@ -171,7 +177,7 @@ footer {
 
 #container-wrapper,
 footer {
-	min-width: 480px;
+	min-width: 300px;
 }
 
 .modal-mask {
@@ -232,6 +238,43 @@ footer {
 		&:active {
 			top: auto;
 			bottom: calc(1em + 1px);
+		}
+	}
+}
+
+.nav.navbar-nav.pull-xs-right {
+	overflow: hidden;
+	.icon {
+		display: none;
+	}
+	li {
+		float: left;
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 529px) {
+	.nav.navbar-nav.pull-xs-right {
+		&.responsive {
+			position: relative;
+
+			li {
+				float: none;
+				display: block;
+				text-align: left;
+				&.icon {
+					position: absolute;
+					right: 0;
+					top: 0;
+				}
+			}
+		}
+		li {
+			display: none;
+		}
+		li.icon {
+			float: right;
+			display: block;
 		}
 	}
 }

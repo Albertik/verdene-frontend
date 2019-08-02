@@ -1,33 +1,34 @@
 // @media screen and (max-width: $break-medium) {
-  .Modal {
-    position: absolute;
-    top: 25%;
-    left: 15%;
-    right: 15%;
-    padding: 10%;
-    background-color: rgb(240, 222, 225);
-    .ReactModal_alert-btn {
-      top: 30px;
-      text-align: center;
-      margin: 0 auto;
-      float: none;
-    }
-    p {
-      font-family: 'Cherry Swash', cursive;
-      font-size: 1.5rem;
-      text-align: center;
-      color: #423443;
-      margin-bottom: 0.5em;
-    }
-  }
+.Modal {
+	position: absolute;
+	top: 25%;
+	left: 15%;
+	right: 15%;
+	padding: 10%;
+	background-color: #ec8d9d;
+	.ReactModal_alert-btn {
+		top: 30px;
+		text-align: center;
+		margin: 0 auto;
+		float: none;
+	}
+	p {
+		font-family: 'Cherry Swash', cursive;
+		font-size: 1.5rem;
+		text-align: center;
+		color: #423443;
+		margin-bottom: 0.5em;
+	}
+}
 
-  .Overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(240, 222, 225, .8);
-  }
+.Overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10;
+	background-color: rgba(51, 41, 42, 0.8);
+}
 
 // }
