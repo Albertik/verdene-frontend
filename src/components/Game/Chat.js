@@ -20,7 +20,7 @@ class Chat extends React.PureComponent {
 		soundsEnabled: PropTypes.bool.isRequired,
 		isOpponentAvailable: PropTypes.bool.isRequired,
 		openModal: PropTypes.func.isRequired
-	}
+	};
 
 	_submitMessage(e) {
 		e.preventDefault();
@@ -37,7 +37,7 @@ class Chat extends React.PureComponent {
 			message: message,
 			className: color + ' left',
 			received: false
-		})
+		});
 		this.setState({ message: '' });
 
 		io.emit('send-message', {
@@ -48,7 +48,7 @@ class Chat extends React.PureComponent {
 	}
 
 	_onChangeMessage(e) {
-	  this.setState({ message: e.target.value });
+		this.setState({ message: e.target.value });
 	}
 
 	_scrollChat() {
@@ -75,17 +75,17 @@ class Chat extends React.PureComponent {
 	}
 
 	componentDidMount() {
-		let {props} = this;
+		let { props } = this;
 		props.io.on('receive-message', data => {
 			props.submitMessage({
 				message: data.message,
 				className: data.color + ' left',
 				received: true
-			})
+			});
 			// this._maybePlaySound();
 		});
 
-		if (window.innerWidth > 1399) this.props.toggleVisibility();
+		// if (window.innerWidth > 1399) this.props.toggleVisibility();
 	}
 	render() {
 		return (
@@ -124,7 +124,9 @@ class Chat extends React.PureComponent {
 			</div>
 		);
 	}
-
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Chat);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Chat);

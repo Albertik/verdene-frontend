@@ -4,11 +4,11 @@ import { Map } from 'immutable';
 
 import GameHeader from './GameHeader';
 import Chat from './Chat';
-// import Modal from './Modal';
 import { GAME_OVER, REMATCH } from '../../constants/gameActionTypes';
 import { connect } from 'react-redux';
 import DraughtsboardInterface from './DraughtsboardInterface';
 import GameOverModal from './GameOverModal';
+import GameFooter from './GameFooter';
 
 const mapStateToProps = state => ({
 	...state.game
@@ -116,7 +116,7 @@ class GameInterface extends React.Component {
 		);
 
 		io.on('full', () => {
-			window.alert('This game already has two players. You have to create a new one.');
+			// window.alert('This game already has two players. You have to create a new one.');
 			// window.location = '/game';
 		});
 
@@ -130,7 +130,16 @@ class GameInterface extends React.Component {
 					.set('open', true)
 					.set('message', 'Your opponent resigned. You win!')
 					.set('type', 'info')
-			})
+			});
+		});
+
+		io.on('countdown-gameover', data => {
+			this.setState({
+				modal: this.state.modal
+					.set('open', true)
+					.set('message', 'Exceeded time!')
+					.set('type', 'info')
+			});
 		});
 
 		io.on('rematch-offered', () => this._openModal('offer', 'Your opponent has sent you a rematch offer.'));
@@ -155,10 +164,17 @@ class GameInterface extends React.Component {
 			);
 		});
 
-		io.on('opponent-disconnected', () => {
-			if (!this.state.gameOver.get('status')) {
-				this._openModal('info', 'Your opponent has disconnected.');
-			}
+		io.on('opponent-disconnected', data => {
+			this.props.gameOver({
+				type: 'disconnected',
+				winner: data.color === 'black' ? 'White' : 'Black'
+			});
+			this.setState({
+				modal: this.state.modal
+					.set('open', true)
+					.set('message', 'Your opponent has disconnected.')
+					.set('type', 'info')
+			});
 
 			this.setState({ isOpponentAvailable: false });
 		});
@@ -182,9 +198,9 @@ class GameInterface extends React.Component {
 					<span> Enable sounds</span>
 				</label> */}
 				<DraughtsboardInterface {...commonProps} token={params[0]} soundsEnabled={soundsEnabled} gameOver={this.props._gameOver} />
+				<GameFooter {...commonProps} params={params} gameOver={this.props._gameOver.get('status')} />
 				<Chat {...commonProps} token={params[0]} soundsEnabled={soundsEnabled} />
-				{/* <Modal data={this.state.modal} /> */}
-				<GameOverModal {...this.props} data={this.state.modal} onHide={this._hideModal} />}
+				<GameOverModal {...this.props} data={this.state.modal} onHide={this._hideModal} />
 			</div>
 		);
 	}

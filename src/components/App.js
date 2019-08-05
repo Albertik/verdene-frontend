@@ -18,22 +18,6 @@ import { push } from 'react-router-redux';
 import io from '../io';
 import { Play } from './Game/Play';
 
-// const ws = new WebSocket('ws://localhost:4200');
-// window.ws = ws;
-
-// ws.onopen = function open() {
-// 	ws.send(
-// 		JSON.stringify({
-// 			event: 'events',
-// 			data: 'test'
-// 		})
-// 	);
-// };
-
-// ws.onmessage = function incoming(data) {
-// 	console.log(data);
-// };
-
 const mapStateToProps = state => {
 	return {
 		appLoaded: state.common.appLoaded,
@@ -81,7 +65,7 @@ class App extends React.Component {
 						<Route path="/settings" component={Settings} />
 						<Route path="/@:username/favorites" component={ProfileFavorites} />
 						<Route path="/@:username" component={Profile} />
-						<Route path="/game" render={props => <Game {...props} io={io}/>} />
+						<Route path="/game" render={props => <Game {...props} io={io} />} />
 						<Route path="/play" component={Play} />
 					</Switch>
 				</div>

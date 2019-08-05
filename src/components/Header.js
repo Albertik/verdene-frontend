@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const LoggedOutView = props => {
 	if (!props.currentUser) {
 		return (
-			<ul className="nav navbar-nav pull-xs-right">
+			<ul className={`nav navbar-nav pull-xs-right${props.responsive ? ' responsive' : ''}`}>
 				<li className="nav-item">
 					<Link to="/" className="nav-link">
 						Home
@@ -22,6 +22,9 @@ const LoggedOutView = props => {
 						Sign up
 					</Link>
 				</li>
+				<li className="icon" onClick={props.onClickNavIcon}>
+					<i class="ionicons ion-navicon-round" />
+				</li>
 			</ul>
 		);
 	}
@@ -31,7 +34,7 @@ const LoggedOutView = props => {
 const LoggedInView = props => {
 	if (props.currentUser) {
 		return (
-			<ul className="nav navbar-nav pull-xs-right">
+			<ul className={`nav navbar-nav pull-xs-right${props.responsive ? ' responsive' : ''}`}>
 				<li className="nav-item">
 					<Link to="/" className="nav-link">
 						Home
@@ -40,13 +43,15 @@ const LoggedInView = props => {
 
 				<li className="nav-item">
 					<Link to="/editor" className="nav-link">
-						<i className="ion-compose" />&nbsp;New Post
+						<i className="ion-compose" />
+						&nbsp;New Post
 					</Link>
 				</li>
 
 				<li className="nav-item">
 					<Link to="/settings" className="nav-link">
-						<i className="ion-gear-a" />&nbsp;Settings
+						<i className="ion-gear-a" />
+						&nbsp;Settings
 					</Link>
 				</li>
 
@@ -56,6 +61,9 @@ const LoggedInView = props => {
 						{props.currentUser.username}
 					</Link>
 				</li>
+				<li className="icon" onClick={props.onClickNavIcon}>
+					<i class="ionicons ion-navicon-round" />
+				</li>
 			</ul>
 		);
 	}
@@ -64,6 +72,18 @@ const LoggedInView = props => {
 };
 
 class Header extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			responsive: false
+		};
+		this.toggleResponsive = this.toggleResponsive.bind(this);
+	}
+
+	toggleResponsive() {
+		this.setState({ responsive: !this.state.responsive });
+	}
+
 	render() {
 		return (
 			<nav className="navbar navbar-light">
@@ -78,9 +98,9 @@ class Header extends React.Component {
 						</Link>
 					)}
 
-					<LoggedOutView currentUser={this.props.currentUser} />
+					<LoggedOutView currentUser={this.props.currentUser} responsive={this.state.responsive} onClickNavIcon={this.toggleResponsive} />
 
-					<LoggedInView currentUser={this.props.currentUser} />
+					<LoggedInView currentUser={this.props.currentUser} responsive={this.state.responsive} onClickNavIcon={this.toggleResponsive} />
 				</div>
 			</nav>
 		);

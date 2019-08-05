@@ -12,12 +12,11 @@ class GameOverModal extends React.PureComponent {
 	}
 
 	render() {
-		console.log(this.props.data);
-		let {data} = this.props;
+		let { data } = this.props;
 
 		return (
 			<ReactModal
-				isOpen={(data && data.get('open'))}
+				isOpen={data && data.get('open')}
 				shouldCloseOnOverlayClick={true}
 				className="Modal"
 				overlayClassName="Overlay"
@@ -25,9 +24,11 @@ class GameOverModal extends React.PureComponent {
 			>
 				<h1 id="heading">Game Over!</h1>
 				<div id="full_description">
-					{data.get('message')}
+					<p>{data.get('message')}</p>
 					<p>{this.props._gameOver.get('winner')} wins!</p>
-          <button onClick={this.handleCloseModal} className="btn ReactModal_alert-btn">OK</button>
+					<button onClick={this.handleCloseModal} className="btn ReactModal_alert-btn">
+						OK
+					</button>
 				</div>
 			</ReactModal>
 		);

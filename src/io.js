@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:4200');
+const socket = io('http://albert-getloyalti.ngrok.io');
 export default socket;
 // socket.on('connect', data => {
 // 	console.log('connected!', data);

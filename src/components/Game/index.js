@@ -19,7 +19,6 @@ class Index extends React.Component {
 
 	constructor(props) {
 		super(props);
-		console.log(props);
 		this.state = this.getInitialState();
 		this._onChangeForm = this._onChangeForm.bind(this);
 		this._createGame = this._createGame.bind(this);

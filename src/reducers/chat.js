@@ -3,7 +3,7 @@ import { SUBMIT_MESSAGE, TOGGLE_VISIBILITY } from '../constants/chatActionTypes'
 
 var _messages = List();
 var _unseenCount = 0;
-var _isChatHidden = true;
+var _isChatHidden = false;
 
 function toggleVisibility() {
 	_isChatHidden = !_isChatHidden;
@@ -33,7 +33,7 @@ export default (
 ) => {
 	switch (action.type) {
 		case SUBMIT_MESSAGE:
-			let {payload} = action;
+			let { payload } = action;
 			submitMessage(payload.message, payload.className, payload.received);
 			return {
 				...state,

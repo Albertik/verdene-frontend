@@ -74,17 +74,9 @@ class DraughtsboardInterface extends React.PureComponent {
 
 				<span className="feedback">
 					{!gameOver.get('status') ? (
-						<span>
-							{`${turn === 'w' ? 'White' : 'Black'} to move.`}
-							{/* {check ? <strong> Check.</strong> : null} */}
-						</span>
+						<span>{`${turn === 'w' ? 'White' : 'Black'} to move.`}</span>
 					) : (
-						<strong>
-							{/* <span className="icon">
-                {gameOver.get('winner') === 'White' ? 'F' : 'f'}
-              </span> */}
-							{this._getGameOverMessage()}
-						</strong>
+						<strong>{this._getGameOverMessage()}</strong>
 					)}
 				</span>
 			</div>

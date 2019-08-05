@@ -54,7 +54,7 @@ class HumanVsHuman extends Component {
 		}));
 	};
 
-	onDrop = ({ sourceSquare, targetSquare }) => {
+	onDrop = ({ sourceSquare, targetSquare, piece }) => {
 		// see if the move is legal
 		let move = this.game.move({
 			from: sourceSquare,
@@ -68,6 +68,7 @@ class HumanVsHuman extends Component {
 			history: this.game.history({ verbose: true }),
 			squareStyles: squareStyling({ pieceSquare, history })
 		}));
+		this.props.onDrop(sourceSquare, targetSquare, piece);
 	};
 
 	onMouseOverSquare = (square, color) => {
@@ -140,10 +141,10 @@ class HumanVsHuman extends Component {
 	}
 }
 
-export default function WithMoveValidation() {
+export default function WithMoveValidation(props) {
 	return (
 		<div>
-			<HumanVsHuman>
+			<HumanVsHuman onDrop={props.onDrop}>
 				{({
 					position,
 					onDrop,
@@ -157,8 +158,9 @@ export default function WithMoveValidation() {
 				}) => (
 					<Draughtsboard
 						id="humanVsHuman"
-						calcWidth={({ screenWidth }) => (screenWidth < 500 ? 350 : 480)}
-						position={position}
+						calcWidth={({ screenWidth }) => (screenWidth < 500 ? screenWidth : 480)}
+						position={props.position || position}
+						orientation={props.orientation}
 						onDrop={onDrop}
 						onMouseOverSquare={onMouseOverSquare}
 						onMouseOutSquare={onMouseOutSquare}
