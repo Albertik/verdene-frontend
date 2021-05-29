@@ -35,7 +35,7 @@
 		"socket.io-client": "^2.2.0",
 		"superagent": "^3.8.2",
 		"superagent-promise": "^1.1.0",
-		"ws": "^6.1.4"
+		"ws": "^7.4.6"
 	},
 	"scripts": {
 		"start": "cross-env PORT=4100 react-scripts start",
